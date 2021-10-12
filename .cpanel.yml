@@ -21,6 +21,7 @@ deployment:
     - / webpack.mix.js $DEPLOYPATH
     #directories
     #- /bin/cp -R images $DEPLOYPATH #####ejemplo de directorio
+    #
     - / -R app $DEPLOYPATH
     - / -R bootsrap $DEPLOYPATH
     - / -R config $DEPLOYPATH
