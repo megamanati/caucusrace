@@ -3,34 +3,34 @@ deployment:
   tasks:
   
     - export DEPLOYPATH=/home/caucusrace/public_html/
-  #files
-  #- / index.html $DEPLOYPATH #####ejemplo de archivo
-  - / .cpanel.yml $DEPLOYPATH
-  - / .env.example $DEPLOYPATH
-  - / .gitattributes $DEPLOYPATH
-  - / .gitignore $DEPLOYPATH
-  - / .styleci.yml $DEPLOYPATH
-  - / artisan $DEPLOYPATH
-  - / composer.json $DEPLOYPATH
-  - / composer.lock $DEPLOYPATH
-  - / docker-compose.yml $DEPLOYPATH
-  - / package.json $DEPLOYPATH
-  - / phpunit.xml $DEPLOYPATH
-  - / README.md $DEPLOYPATH
-  - / server.php $DEPLOYPATH
-  - / webpack.mix.js $DEPLOYPATH
-  #directories
-  #- /bin/cp -R images $DEPLOYPATH #####ejemplo de directorio
-  - / -R app $DEPLOYPATH
-  - / -R bootsrap $DEPLOYPATH
-  - / -R config $DEPLOYPATH
-  - / -R database $DEPLOYPATH
-  - / -R public $DEPLOYPATH
-  - / -R resources $DEPLOYPATH
-  - / -R routes $DEPLOYPATH
-  - / -R storage $DEPLOYPATH
-  - / -R test $DEPLOYPATH
-  - / -R vendor $DEPLOYPATH
+    #files
+    #- / index.html $DEPLOYPATH #####ejemplo de archivo
+    - / .cpanel.yml $DEPLOYPATH
+    - / .env.example $DEPLOYPATH
+    - / .gitattributes $DEPLOYPATH
+    - / .gitignore $DEPLOYPATH
+    - / .styleci.yml $DEPLOYPATH
+    - / artisan $DEPLOYPATH
+    - / composer.json $DEPLOYPATH
+    - / composer.lock $DEPLOYPATH
+    - / docker-compose.yml $DEPLOYPATH
+    - / package.json $DEPLOYPATH
+    - / phpunit.xml $DEPLOYPATH
+    - / README.md $DEPLOYPATH
+    - / server.php $DEPLOYPATH
+    - / webpack.mix.js $DEPLOYPATH
+    #directories
+    #- /bin/cp -R images $DEPLOYPATH #####ejemplo de directorio
+    - / -R app $DEPLOYPATH
+    - / -R bootsrap $DEPLOYPATH
+    - / -R config $DEPLOYPATH
+    - / -R database $DEPLOYPATH
+    - / -R public $DEPLOYPATH
+    - / -R resources $DEPLOYPATH
+    - / -R routes $DEPLOYPATH
+    - / -R storage $DEPLOYPATH
+    - / -R test $DEPLOYPATH
+    - / -R vendor $DEPLOYPATH
   
 
   
