@@ -1,7 +1,6 @@
 ---
 deployment:
   tasks:
-  
     - export DEPLOYPATH=/home/caucusrace/public_html/
     #files
     #- / index.html $DEPLOYPATH #####ejemplo de archivo
