@@ -3,34 +3,34 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/caucusrace/public_html/
     #files
-    #- / index.html $DEPLOYPATH #####ejemplo de archivo
-    - / .cpanel.yml $DEPLOYPATH
-    - / .env.example $DEPLOYPATH
-    - / .gitattributes $DEPLOYPATH
-    - / .gitignore $DEPLOYPATH
-    - / .styleci.yml $DEPLOYPATH
-    - / artisan $DEPLOYPATH
-    - / composer.json $DEPLOYPATH
-    - / composer.lock $DEPLOYPATH
-    - / docker-compose.yml $DEPLOYPATH
-    - / package.json $DEPLOYPATH
-    - / phpunit.xml $DEPLOYPATH
-    - / README.md $DEPLOYPATH
-    - / server.php $DEPLOYPATH
-    - / webpack.mix.js $DEPLOYPATH
+    #- /bin/cp index.html $DEPLOYPATH #####ejemplo de archivo
+    - /bin/cp .cpanel.yml $DEPLOYPATH
+    - /bin/cp .env.example $DEPLOYPATH
+    - /bin/cp .gitattributes $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp .styleci.yml $DEPLOYPATH
+    - /bin/cp artisan $DEPLOYPATH
+    - /bin/cp composer.json $DEPLOYPATH
+    - /bin/cp composer.lock $DEPLOYPATH
+    - /bin/cp docker-cpcompose.yml $DEPLOYPATH
+    - /bin/cp package.json $DEPLOYPATH
+    - /bin/cp phpunit.xml $DEPLOYPATH
+    - /bin/cp README.md $DEPLOYPATH
+    - /bin/cp server.php $DEPLOYPATH
+    - /bin/cp webpack.mix.js $DEPLOYPATH
     #directories
-    #- /bin/cp -R images $DEPLOYPATH #####ejemplo de directorio
+    #- /bin/cp images $DEPLOYPATH #####ejemplo de directorio
     #
-    - -R app $DEPLOYPATH
-    - -R bootsrap $DEPLOYPATH
-    - -R config $DEPLOYPATH
-    - -R database $DEPLOYPATH
-    - -R public $DEPLOYPATH
-    - -R resources $DEPLOYPATH
-    - -R routes $DEPLOYPATH
-    - -R storage $DEPLOYPATH
-    - -R test $DEPLOYPATH
-    - -R vendor $DEPLOYPATH
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R bootsrap $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp -R resources $DEPLOYPATH
+    - /bin/cp -R routes $DEPLOYPATH
+    - /bin/cp -R storage $DEPLOYPATH
+    - /bin/cp -R test $DEPLOYPATH
+    - /bin/cp -R vendor $DEPLOYPATH
   
 
   
