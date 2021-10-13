@@ -12,7 +12,7 @@ deployment:
     - /bin/cp artisan $DEPLOYPATH
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH
-    - /bin/cp docker-cpcompose.yml $DEPLOYPATH
+    - /bin/cp docker-compose.yml $DEPLOYPATH
     - /bin/cp package.json $DEPLOYPATH
     - /bin/cp phpunit.xml $DEPLOYPATH
     - /bin/cp README.md $DEPLOYPATH
