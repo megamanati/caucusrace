@@ -4,11 +4,7 @@ deployment:
     - export DEPLOYPATH=/home/caucusrace/public_html/
     #files
     #- /bin/cp index.html $DEPLOYPATH #####ejemplo de archivo
-    - /bin/cp .cpanel.yml $DEPLOYPATH
-    - /bin/cp .env.example $DEPLOYPATH
-    - /bin/cp .gitattributes $DEPLOYPATH
-    - /bin/cp .gitignore $DEPLOYPATH
-    - /bin/cp .styleci.yml $DEPLOYPATH
+    - /bin/cp .cpanel.yml $DEPLOYPATHH
     - /bin/cp artisan $DEPLOYPATH
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH

@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 #pasa a la vista test un arreglo de parametros
 Route::view('/test', 'test', ['name' => null]);
+Route::view('/gfg', 'gfg');
 
 Route::get('/greeting', 
     function () {
@@ -88,6 +89,8 @@ Route::get('/there',
         return redirect('http://www.google.com');
     }
 );
+
+
 
 Route::get('/dominio/{id?}', 
     function($id) {
