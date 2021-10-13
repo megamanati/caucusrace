@@ -102,16 +102,19 @@ Route::get('/dominio/{id?}',
         //$route = Route::current(); // Illuminate\Routing\Route
 
 
-    // $users = DB::select('select * from dominio');
+    $users = DB::select('select * from dominio');
 
-    // foreach ($users as $user) {
-    //     echo $user->name;
-    // }
+    foreach ($users as $user) {
+        echo $user->name;
+    }
         $name = Route::currentRouteName(); // string
         $action = Route::currentRouteAction(); 
         return $id.' '.' '.$name.' '.$action;
 });
 
+Route::get('/midominio', function(){
+    return view('midominio');
+})->name('midominio');
 
 
 Route::post('/dominio/{id?}', 
