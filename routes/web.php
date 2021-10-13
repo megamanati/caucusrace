@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function(){
+    return view('home');
+});
+
 // #Ruta de login
 // Route::view('/login', 'login')->name('login');
 
