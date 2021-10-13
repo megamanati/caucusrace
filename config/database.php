@@ -50,7 +50,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'caucusrace'),
             'username' => env('DB_USERNAME', 'caucusrace_Domain_routes'),
-            'password' => env('DB_PASSWORD', 'Masanori2021@'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
