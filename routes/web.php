@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
+    // return view('welcome');
 });
 
 Route::get('/home', function(){
     return view('home');
-});
+})->name('home');
 
 // #Ruta de login
 // Route::view('/login', 'login')->name('login');
@@ -101,11 +102,11 @@ Route::get('/dominio/{id?}',
         //$route = Route::current(); // Illuminate\Routing\Route
 
 
-    $users = DB::select('select * from dominio');
+    // $users = DB::select('select * from dominio');
 
-    foreach ($users as $user) {
-        echo $user->name;
-    }
+    // foreach ($users as $user) {
+    //     echo $user->name;
+    // }
         $name = Route::currentRouteName(); // string
         $action = Route::currentRouteAction(); 
         return $id.' '.' '.$name.' '.$action;
