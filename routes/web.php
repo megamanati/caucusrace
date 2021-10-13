@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// #Ruta de login
+// Route::view('/login', 'login')->name('login');
 
 #pasa a la vista test un arreglo de parametros
 Route::view('/test', 'test', ['name' => null]);
@@ -42,6 +45,7 @@ use Illuminate\Http\Request;
 
 #/user/##CUALQUIER ID QUE PONGAS SE RESUELVE##
 Route::get('/user/{id}', function (Request $request, $id) {
+    
     return 'User '.$id;
 }); 
     
@@ -88,6 +92,13 @@ Route::get('/there',
 Route::get('/dominio/{id?}', 
     function($id) {
         //$route = Route::current(); // Illuminate\Routing\Route
+
+
+    $users = DB::select('select * from dominio');
+
+    foreach ($users as $user) {
+        echo $user->name;
+    }
         $name = Route::currentRouteName(); // string
         $action = Route::currentRouteAction(); 
         return $id.' '.' '.$name.' '.$action;
@@ -137,7 +148,9 @@ Route::get('/user/{id}/{name?}', function ($id, $name) {
 // }
 
 
-
+Route::get('/profile', function () {
+    //
+})->middleware('auth');
 
 
 Route::fallback(function () {
