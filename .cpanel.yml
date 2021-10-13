@@ -22,7 +22,7 @@ deployment:
     #- /bin/cp images $DEPLOYPATH #####ejemplo de directorio
     #
     - /bin/cp -R app $DEPLOYPATH
-    - /bin/cp -R bootsrap $DEPLOYPATH
+    - /bin/cp -R bootstrap $DEPLOYPATH
     - /bin/cp -R config $DEPLOYPATH
     - /bin/cp -R database $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
