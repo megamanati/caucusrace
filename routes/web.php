@@ -96,17 +96,24 @@ Route::get('/there',
 );
 
 
+Route::post('/dominio/{id?}', 
+    function(Request $request) { 
+        $request->nombreDominio;
+        //$route = Route::current(); // Illuminate\Routing\Route
+        $name = Route::currentRouteName(); // string
+        return $name.': '.$request->nombreDominio;
+})->name('domain');
 
 Route::get('/dominio/{id?}', 
     function($id) {
         //$route = Route::current(); // Illuminate\Routing\Route
 
 
-    $users = DB::select('select * from dominio');
+    // $users = DB::select('select * from dominio');
 
-    foreach ($users as $user) {
-        echo $user->name;
-    }
+    // foreach ($users as $user) {
+    //     echo $user->name;
+    // }
         $name = Route::currentRouteName(); // string
         $action = Route::currentRouteAction(); 
         return $id.' '.' '.$name.' '.$action;
@@ -117,13 +124,7 @@ Route::get('/midominio', function(){
 })->name('midominio');
 
 
-Route::post('/dominio/{id?}', 
-    function(Request $request) { 
-        //$route = Route::current(); // Illuminate\Routing\Route
-        $name = Route::currentRouteName(); // string
-        $action = Route::currentRouteAction(); 
-        return $name.' '.$action;
-})->name('domain');
+
 
 
 Route::get('/user/{id}/profile', function ($id) {
