@@ -15,17 +15,4 @@ class Controller extends BaseController
 }
 
 
-class UserController extends Controller
-{
-    /**
-     * Show a list of all of the application's users.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dominios()
-    {
-        $users = DB::select('select * from dominios where domainName = ?', ['dominio.1']);
 
-        return view('user.index', ['users' => $users]);
-    }
-}

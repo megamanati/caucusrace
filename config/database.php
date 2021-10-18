@@ -46,10 +46,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'caucusrace.org'),
+            'host' => env('DB_HOST', '172.29.25.166'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'caucusrace'),
-            'username' => env('DB_USERNAME', 'caucusrace_Domain_routes'),
+            'database' => env('DB_DATABASE', 'caucusrace_Domain_routes'),
+            'username' => env('DB_USERNAME', ''),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
