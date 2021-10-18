@@ -38,4 +38,28 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /**
+ * Get the default context variables for logging.
+ *
+ * @return array
+ */
+protected function context()
+{
+    return array_merge(parent::context(), [
+        'foo' => 'bar',
+    ]);
+}
+
+public function isValid($value)
+{
+    try {
+        // Validate the value...
+    } catch (Throwable $e) {
+
+        report($e);
+
+        return false;
+    }
+}
 }

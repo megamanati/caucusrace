@@ -20,8 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function(){
-    return view('home');
+    return view('home', ['name' => null]);
 })->name('home');
+
 
 // #Ruta de login
 // Route::view('/login', 'login')->name('login');
@@ -30,17 +31,20 @@ Route::get('/home', function(){
 Route::view('/test', 'test', ['name' => null]);
 Route::view('/gfg', 'gfg');
 
-Route::get('/greeting', 
-    function () {
-        return 'Hello World';
-    }
-);
+// Route::get('/greeting',     function () {        return 'Hello World';    });
+Route::view('midominio.lista', 'midominio.lista')->name('midominio.lista');
 
 // use App\Http\Controllers\UserController;
 
 // Route::get('/user', [UserController::class, 'index']);
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\DominiosController;
+
+Route::get('/midominio', [DominiosController::class, 'index'])->name('midominio.index');
+Route::post('/midominio/{domainName?}', [DominiosController::class, 'getdominio'])->name('midominio.midominio');
+
+
 
 // Route::post('/users', 
 //     function(Request $request) {
@@ -50,19 +54,16 @@ use Illuminate\Http\Request;
 // });
 
 #/user/##CUALQUIER ID QUE PONGAS SE RESUELVE##
-Route::get('/user/{id}', function (Request $request, $id) {
-    
-    return 'User '.$id;
-}); 
+// Route::get('/user/{id}', function (Request $request, $id) { return 'User '.$id; }); 
     
 #localhost/users?&asdf=&asdfsd=
-Route::get('/users', 
-    function (Request $request) {
-        $param1 = $request->asdf;
-        $param2 = $request->asdfsd;
-        return "{$param1} y {$param2}";
-        // return $request;
-});
+// Route::get('/users', 
+//     function (Request $request) {
+//         $param1 = $request->asdf;
+//         $param2 = $request->asdfsd;
+//         return "{$param1} y {$param2}";
+//         // return $request;
+// });
 
 #localhost/users/asdf/asdfsd/
 // Route::get('/users/{asdf}/{asdfsd}', 
@@ -76,52 +77,22 @@ Route::get('/users',
 // Route::get($uri, $callback);
 
 #Cuando puede o no tener la URI algun dato como el nombre
-Route::get('/users/{asdf?}/asdfsd?', function ($param1 = null, $param2 = null) {
-    return "{$param1} y {$param2}";
-});
-
-// Route::get('/user/{name?}', function ($name = 'John') {
-//     return $name;
+// Route::get('/users/{asdf?}/asdfsd?', function ($param1 = null, $param2 = null) {
+//     return "{$param1} y {$param2}";
 // });
 
 #Redireccion de rutas localhost/here a localhost/there
-Route::redirect('/here', '/there');
+//Route::redirect('/here', '/there');
 
 #redireccionar a otro dominio
-Route::get('/there', 
-    function () {
-        // return 'Llegue de...';
-        return redirect('http://www.google.com');
-    }
-);
+// Route::get('/there', 
+//     function () {
+//         // return 'Llegue de...';
+//         return redirect('http://www.google.com');
+//     }
+// );
 
 
-Route::post('/dominio/{id?}', 
-    function(Request $request) { 
-        $request->nombreDominio;
-        //$route = Route::current(); // Illuminate\Routing\Route
-        $name = Route::currentRouteName(); // string
-        return $name.': '.$request->nombreDominio;
-})->name('domain');
-
-Route::get('/dominio/{id?}', 
-    function($id) {
-        //$route = Route::current(); // Illuminate\Routing\Route
-
-
-    // $users = DB::select('select * from dominio');
-
-    // foreach ($users as $user) {
-    //     echo $user->name;
-    // }
-        $name = Route::currentRouteName(); // string
-        $action = Route::currentRouteAction(); 
-        return $id.' '.' '.$name.' '.$action;
-});
-
-Route::get('/midominio', function(){
-    return view('midominio');
-})->name('midominio');
 
 
 
@@ -132,18 +103,20 @@ Route::get('/user/{id}/profile', function ($id) {
     return 'Numero de perfil: '.$url;
 })->name('profile');
 
-#Se puede forzar una expresion regular sobre la URI
-Route::get('/user/{name?}', function ($name) {
-    return 'problema 1';
-})->where('name', '[A-Za-z]+');
+Route::get('welcome', function() { return 'Welcome';})->name('domain');
 
-Route::get('/user/{id?}', function ($id) {
-    return 'problema 2';
-})->where('id', '[0-9]+');
+// #Se puede forzar una expresion regular sobre la URI
+// Route::get('/user/{name?}', function ($name) {
+//     return 'problema 1';
+// })->where('name', '[A-Za-z]+');
 
-Route::get('/user/{id}/{name?}', function ($id, $name) {
-    return 'problema 3';
-})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
+// Route::get('/user/{id?}', function ($id) {
+//     return 'problema 2';
+// })->where('id', '[0-9]+');
+
+// Route::get('/user/{id}/{name?}', function ($id, $name) {
+//     return 'problema 3';
+// })->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
 
 #Existen otros metodos como ->whereNumber('id')->whereAlpha('name') o ->whereAlphaNumeric('name'); o ->whereUuid('id');
 #Tambien se puede forzar a todos los parametros globalmente
@@ -160,9 +133,9 @@ Route::get('/user/{id}/{name?}', function ($id, $name) {
 // }
 
 
-Route::get('/profile', function () {
-    //
-})->middleware('auth');
+// Route::get('/profile', function () {
+//     //
+// })->middleware('auth');
 
 
 Route::fallback(function () {

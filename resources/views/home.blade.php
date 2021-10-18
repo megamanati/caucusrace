@@ -1,15 +1,9 @@
 <html>
-    
-    <header>
-        <nav></nav>
-    <h1>Hello!!! {{ $name }} Welcome to my page </h1>
-    </header>
+@include('header')
     
     <body>
-        
-
+    
     </body>
-    <footer>
 
-    </footer>
+@include('footer')
 </html>
