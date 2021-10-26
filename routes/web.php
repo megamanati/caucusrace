@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\DominiosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +13,38 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\App;
+
+// Route::domain('{subdomain}.localhost')->group(function(){
+//     Route::get('subdomain/{subdomain}' ,  [DominiosController::class, 'subdomain'])->name('subdomain');
+// });
+
+
+Route::domain('{subdomain}.localhost')->group(function () {
+    Route::get('/',  [DominiosController::class, 'subdomain'])->where('subdomain', '(.*)');
+});
+
+Route::domain('{subdomain}.caucusrace.org')->group(function () {
+    Route::get('/',  [DominiosController::class, 'subdomain'])->where('subdomain', '(.*)');
+        //return view('home', ['name' => null]);
+});
+
+Route::domain('{subdomain}.and.republic')->group(function () {
+    Route::get('/',  [DominiosController::class, 'subdomain'])->where('subdomain', '(.*)');
+        //return view('home', ['name' => null]);
+});
+
+Route::domain('{subdomain}.and.democrat')->group(function () {
+    Route::get('/',  [DominiosController::class, 'subdomain'])->where('subdomain', '(.*)');
+        //return view('home', ['name' => null]);
+});
+
+Route::get('/home', function(){
+    return view('home', ['name' => null]);
+})->name('home');
 
 Route::get('/', function () {
+
     return redirect('/home');
     // return view('welcome');
 });
@@ -39,10 +69,12 @@ Route::view('midominio.lista', 'midominio.lista')->name('midominio.lista');
 // Route::get('/user', [UserController::class, 'index']);
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\DominiosController;
+
 
 Route::get('/midominio', [DominiosController::class, 'index'])->name('midominio.index');
 Route::post('/midominio/{domainName?}', [DominiosController::class, 'getdominio'])->name('midominio.midominio');
+
+Route::get('/cpanel2', [DominiosController::class, 'cpanel'])->name('midominio.cpanel');
 
 
 

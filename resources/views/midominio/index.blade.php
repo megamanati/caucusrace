@@ -15,11 +15,16 @@
         @csrf
         
             <div class="labelDominio">
-                <label>Escribe tu dominio</label>
+                <label> {{ 'messages.escribedominio' }} </label>
             </div>
             <input type="text" id="nombreDominio" name="nombreDominio" require>
+            <select id="terminacion" name="terminacion">
+              <option value="republican">and.recuplican</option>
+             <option value="democrat">and.democrat</option>
+             <option value="caucusrace">caucusrace.org</option>
+</select>
             <div class="labelUrl">
-            <label>Escribe tu URL de redirección</label>        
+            <label><?php echo('messages.URLredirect') ?> </label>        
             </div>
             <input type="text" id="redireccionDominio" name="redireccionDominio" require>
 
@@ -29,7 +34,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             
             <div class="botonDominio">
-            <input type="submit" value="dominio">
+            <input type="submit" value="sumbit">
     </div>
         </form>
         <div>

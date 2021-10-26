@@ -46,7 +46,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '172.29.25.166'),
+            'host' => env('DB_HOST', '172.21.19.141'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'caucusrace_Domain_routes'),
             'username' => env('DB_USERNAME', ''),
