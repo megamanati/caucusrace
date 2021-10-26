@@ -10,6 +10,4 @@
 
 <?php
 
-
-// Now you can just call encrypt($string) or decrypt($string)
 ?>
