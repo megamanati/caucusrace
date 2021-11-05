@@ -74,10 +74,6 @@ use Illuminate\Http\Request;
 Route::get('/midominio', [DominiosController::class, 'index'])->name('midominio.index');
 Route::post('/midominio/{domainName?}', [DominiosController::class, 'getdominio'])->name('midominio.midominio');
 
-Route::get('/cpanel2', [DominiosController::class, 'cpanel'])->name('midominio.cpanel');
-
-
-
 // Route::post('/users', 
 //     function(Request $request) {
 //         $param1 = 'hola';
@@ -123,11 +119,6 @@ Route::get('/cpanel2', [DominiosController::class, 'cpanel'])->name('midominio.c
 //         return redirect('http://www.google.com');
 //     }
 // );
-
-
-
-
-
 
 
 Route::get('/user/{id}/profile', function ($id) {

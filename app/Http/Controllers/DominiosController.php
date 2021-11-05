@@ -113,72 +113,41 @@ class DominiosController extends Controller
         //
     }
 
-    public function cpanel(){
-        include ('../resources/cpanel.live.php');
-
-       $cp = new cpanelC();
-       $cpvar = $cp->cpanel;
-
-
-    }
-
     public function getdominio(Request $request)
     {
-        // dd($request->all());  //to check all the datas dumped from the form
-        // //if your want to get single element,someName in this case
-        // $someName = $request->someName; \
-        $name = Route::currentRouteName(); // string
         $method = $request->method();
         #$nombreDominio = $request->input('nombreDominio');
         DB::beginTransaction();
 
-        if ($request->isMethod('post')) {
+        
+        if ($request->isMethod('post')) { //If the method is of the request is POST
             $input = $request->all();
             $indice = '';
             $fechaInicio = '';
             
-            $htmlRequestStr = 'https://caucusrace.org:2083/cpsessCULKHIG2HZNWBWL9JCHT13VYQKTAXV59/execute/SubDomain/addsubdomain?domain='.$request->nombreDominio.'&rootdomain='.$request->terminacion;
-            
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,0);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER,0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);
-
-            $header[0] = "Authorization: WHM $whmusername:";
-            curl_setopt($curl,CURLOPT_HTTPHEADER,$header);
-            curl_setopt($curl, CURLOPT_URL, $htmlRequestStr);
-            $result = curl_exec($curl);
-
-            if ($result == false) {
-                // your error log
-            }
-            if($result){
-                $decoded_response = json_decode( $result, true );
-                if(isset($decoded_response['data']) && !empty($decoded_response['data'])){
-                    $url = $decoded_response['data']['url'];
-                    echo $url;
-                }
-
-            }     
-            
+            //Replace HTTP and HTTPS string to ""
             $dominio = preg_replace("(^https?://)", "", $request->nombreDominio.".".$request->terminacion);
-            $dominio = str_replace(' ', '', $dominio);
-            $Urlredir = preg_replace("(^https?://)", "",  $request->redireccionDominio);
+            $dominio = str_replace(' ', '', $dominio); //Remove blank spaces
+            $Urlredir = preg_replace("(^https?://)", "",  $request->redireccionDominio); //Replace HTTP and HTTPS string to ""
 
             if (!empty($input) && isset($request->nombreDominio)){
                 try{
-                DB::insert("insert into dominios (domainName, URLredirect, fechaInicio, usuario) VALUES (?,
-                ?, ?, ?)", [$dominio, $Urlredir,gmdate("Y-m-d H:i:s",time()),"laravel"]);
-               // echo $request->nombreDominio.' '.$Urlredir.' '.gmdate("Y-m-d H:i:s",time()).' '."laravel";
+                    //Insert of data
+                    DB::insert("insert into dominios (domainName, URLredirect, fechaInicio, usuario) VALUES (?,
+                    ?, ?, ?)", [$dominio, $Urlredir,gmdate("Y-m-d H:i:s",time()),"laravel"]);
+                    // echo $request->nombreDominio.' '.$Urlredir.' '.gmdate("Y-m-d H:i:s",time()).' '."laravel";
+                ///Throws a exception if the name exist or a Query exception is throwed
                 } catch (\Illuminate\Database\QueryException $ex)
                 { 
                     #$fechaInicio = DB::select("select fechaInicio from dominios where domainName = ? limit 1", [$request->nombreDominio]);
-                
-                    $fechaInicio = DB::table("dominios")->where('domainName',[$dominio])->first();
-                    #return $fechaInicio->fechaInicio;
-                    #return gmdate("Y-m-d",time());
+                    //Get the query where domain name is passed getting the info
+                    $query = DB::table("dominios")->where('domainName',[$dominio])->first();
+                    #$query->fechaInicio;
+                    #$query->domainName
+                    #$query->URLredirect
+                    
                     DB::rollback();
-                    return back()->withError('Lamentablemente El dominio '.$dominio.' fue creado el dia, '.$fechaInicio->fechaInicio.'. Tienes que esperar '.DominiosController::diasParaExpirar($fechaInicio->fechaInicio).' dias desde su creacion para poder usarlo.')->withInput();
+                    return back()->withError('Lamentablemente El dominio '.$dominio.' fue creado el dia, '.$query->fechaInicio.'. Tienes que esperar '.DominiosController::diasParaExpirar($query->fechaInicio).' dias desde su creacion para poder usarlo.')->withInput();
                 }
             }else {
                 DB::rollback();
@@ -186,6 +155,7 @@ class DominiosController extends Controller
             }
         }
         DB::commit();
+        //Return View midominio with parameters, dominio, URL and fecha
         return view('midominio.midominio')
         ->with('dominio', $dominio)
         ->with('URL', $Urlredir)
@@ -194,26 +164,30 @@ class DominiosController extends Controller
 
     private function diasParaExpirar($fechaInicio){
 
+        //Get the current date in UTC
         $datetime1 = date_create(gmdate("Y-m-d",time()));
+        //Get the date to compare
         $datetime2 = date_create($fechaInicio);
-
+        //Return the difference
         $diferencia = date_diff($datetime1, $datetime2);
+        //Diference of 21 days minus the result
         $faltante = 21 - $diferencia->format('%a');
-
+        //Return
         return $faltante;
 
     }
 
     public function subdomain(Request $request){
-        $name = Route::currentRouteName(); 
+        //Replace the http:// with whitespace
         $url = preg_replace("(^https?://)", "", URL::current());
-
-        $domain = DB::table("dominios")->where('domainName',[$name])->first();
-        
+        //Save the first domain name that matches in the table
+        $domain = DB::table("dominios")->where('domainName',[$url])->first();
+        //If the domain exists, returns a the url, if not, redirect to HOME
         if (!empty($domain) || isset($domain)){
-                return $domain->domainName.' '.$domain->fechaInicio.''.$domain->URLredirect;
+            //return $domain->domainName.' '.$domain->fechaInicio.''.$domain->URLredirect;
+            return ('http://'.$domain->URLredirect);
         }else {
-            redirect('/home');           
+            return redirect('/home');           
         }
     }
 }
