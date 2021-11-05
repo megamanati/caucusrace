@@ -2,7 +2,8 @@
 
 <?php
 
-    $users = DB::select('select * from dominios');
+    //$users = DB::select('select * from dominios');
+    $users = DB::table("dominios")->get();
     echo "<div style='overflow-x: auto;'>";
     echo "<table class='tabla'>";
     echo "<tr class='TablaHeader'>";
@@ -16,7 +17,6 @@
         echo "<th>".$user->URLredirect."</th>";
         echo "<th>".$user->fechaInicio."</th>";
         echo "</tr>";
-        
     }
     echo "</table>";
     echo "</div>";
